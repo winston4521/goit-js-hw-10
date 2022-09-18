@@ -13,7 +13,9 @@ inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(e) {
   e.preventDefault();
   const trimEl = e.target.value.trim();
-
+  if (!trimEl) {
+    return;
+  }
   fetchCountries(trimEl)
     .then(onQuantityCheck)
     .catch(error => {
